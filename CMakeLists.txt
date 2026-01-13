@@ -74,6 +74,8 @@ option(PERFORM_HEADER_CHECK "Performs compile-time checks that each header can b
 option(VALGRIND_TEST_SUITE "Run the test suite under valgrind")
 set(VALGRIND_OPTIONS "--suppressions=${CMAKE_CURRENT_SOURCE_DIR}/valgrind.suppressions" CACHE STRING "Additional options to pass to valgrind")
 
+option(ENABLE_MPL "Enable Hierarchy Keyring, which depends on aws-sdk-dynamodb.")
+
 CHECK_C_SOURCE_COMPILES("
     int main() { return __builtin_expect(0, 0); }
     " HAVE_BUILTIN_EXPECT)
@@ -160,6 +162,11 @@ target_link_libraries(aws-encryption-sdk-test PRIVATE ${PLATFORM_LIBS} ${OPENSSL
 target_link_libraries(aws-encryption-sdk-test PUBLIC AWS::aws-c-common)
 target_compile_definitions(aws-encryption-sdk-test PRIVATE AWS_CRYPTOSDK_TEST_STATIC=)
 target_compile_definitions(aws-encryption-sdk-test PUBLIC AWS_ENCRYPTION_SDK_FORCE_STATIC)
+
+if(ENABLE_MPL)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE MPL)
+    target_compile_definitions(aws-encryption-sdk-test PRIVATE MPL)
+endif()
 
 include(CodeCoverageTargets)
 

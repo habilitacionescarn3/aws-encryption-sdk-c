@@ -1,15 +1,11 @@
-#include "lib.rs.h"
+#include "aws-mpl-cxx/src/lib.rs.h"
+#include "rust/cxx.h"
 #include <iostream>
 
 int main() {
-    // Call the Rust function directly
-    MyData data = { 1, rust::String("Example") };
-    if (process_data(data)) {
-        std::cout << "Success!" << std::endl;
-    }
-    MyConfig config = { 1, rust::String("Example") };
-    auto obj = create_client(config);
-    std::cout << obj->get_value() << std::endl;
-    delete_client(std::move(obj));
+    auto config = default_client_config();
+    auto obj = create_kms_client(config);
+    delete_kms_client(std::move(obj));
+    std::cout << "Success!\n";
     return 0;
 }
