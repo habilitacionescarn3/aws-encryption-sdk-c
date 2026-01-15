@@ -1,5 +1,4 @@
 #include "aws-mpl-cxx/src/lib.rs.h"
-#include "rust/cxx.h"
 #include <iostream>
 
 int main() {

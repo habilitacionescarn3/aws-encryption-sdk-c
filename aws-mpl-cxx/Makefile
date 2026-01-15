@@ -3,7 +3,7 @@
 all:
 	g++ main.cpp ./target/cxxbridge/aws-mpl-cxx/src/lib.rs.cc \
 		$$(find target/debug/build -path "*/cxx-*/out/libcxxbridge1.a" | head -n1) \
-		-L./target/debug -laws_mpl_cxx \
+		-L./target/release -laws_mpl_cxx \
 		-I./target/cxxbridge \
 		-lpthread -ldl \
 		-std=c++11 \
