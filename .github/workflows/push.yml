@@ -6,13 +6,15 @@ on:
 
 permissions:
   contents: read
-  id-token: write
 
 jobs:
   clang-format:
     uses: ./.github/workflows/clang-format.yml
     secrets: inherit
   codebuild:
+    permissions:
+      contents: read
+      id-token: write
     uses: ./.github/workflows/codebuild.yml
     secrets: inherit
   osx:
