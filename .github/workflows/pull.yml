@@ -19,7 +19,7 @@ jobs:
     uses: ./.github/workflows/osx.yml
     secrets: inherit
   proof-ci:
-    uses: ./.github/workflows/proof_ci.yaml
+    uses: ./.github/workflows/proof_ci.yml
     secrets: inherit
   pr-ci-all-required:
     if: always()
