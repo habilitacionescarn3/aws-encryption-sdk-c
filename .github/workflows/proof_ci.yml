@@ -9,7 +9,7 @@ on:
 # USAGE
 #
 # If you need to use different versions for tools like CBMC, modify this file:
-# .github/workflows/proof_ci_resources/config.yaml
+# .github/workflows/proof_ci_resources/config.yml
 #
 # If you want the CI to use a different GitHub-hosted runner (which must still
 # be running Ubuntu 20.04), modify the value of this key:
@@ -30,7 +30,7 @@ jobs:
           submodules: 'recursive'
       - name: Parse config file
         run: |
-          CONFIG_FILE='.github/workflows/proof_ci_resources/config.yaml'
+          CONFIG_FILE='.github/workflows/proof_ci_resources/config.yml'
           for setting in cadical-tag cbmc-version cbmc-viewer-version kissat-tag litani-version proofs-dir run-cbmc-proofs-command; do
             VAR=$(echo $setting | tr "[:lower:]" "[:upper:]" | tr - _)
             echo "${VAR}"=$(yq .$setting $CONFIG_FILE) >> $GITHUB_ENV
